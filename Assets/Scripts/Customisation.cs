@@ -50,8 +50,6 @@ public class Customisation : MonoBehaviour {
 	int cullingMask;
 
 	void Start () {
-//		FadeTextToFullAlpha (1.0f, welcome);
-//		FadeTextToZeroAlpha (2.0f, welcome);
 		stage = (int)Stages.Gender;
 		cullingMask = this.gameObject.GetComponent<Camera> ().cullingMask;
 		SetStage ();
@@ -232,32 +230,6 @@ public class Customisation : MonoBehaviour {
 			break;
 		}
 	}
-
-	public void SetSkinColour(string skinType) {
-//		if (stage == (int)Stages.Skin) {
-//			Color skinColour = new Color (255, 214, 197, 0); 
-//			switch (skinType) {
-//			case "skin1":
-//				skinColour = RGBConvert (255, 214, 197, 255);
-//				break;
-//			case "skin2":
-//				skinColour = RGBConvert (232, 184, 148, 255);
-//				break;
-//			case "skin3":
-//				skinColour = RGBConvert (216, 144, 95, 255);
-//				break;
-//			case "skin4":
-//				skinColour = RGBConvert (123, 73, 52, 255);
-//				break;
-//			default:
-//				UnityEngine.Debug.Log ("Default case");
-//				break;
-//			}
-//			skinToneChosen = skinColour;
-
-//			stage = (int)Stages.Final;
-//		}
-	}
 		
 
 	private void ChangeSkinColour(){
@@ -276,12 +248,6 @@ public class Customisation : MonoBehaviour {
 		//Change the colour of the head
 		bustRenderer.materials [0].color = skinColour;
 	}
-
-	//Helper function to convert range of RGB from 0-255 to 0-1
-//	private static Vector4 RGBConvert(float r, float g, float b, float a){
-//		Vector4 color = new Vector4(r/255, g/255, b/255, a/255);
-//		return color;
-//	}
 
 	private static Color averageColor(Color[] colors) {
 		float r = 0.0f;
@@ -303,25 +269,5 @@ public class Customisation : MonoBehaviour {
 			this.gameObject.GetComponent<Camera> ().cullingMask = cullingMask;
 		}
 	}
-
-//	public IEnumerator FadeTextToFullAlpha(float t, Text i)
-//	{
-//		i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-//		while (i.color.a < 1.0f)
-//		{
-//			i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-//			yield return null;
-//		}
-//	}
-//
-//	public IEnumerator FadeTextToZeroAlpha(float t, Text i)
-//	{
-//		i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-//		while (i.color.a > 0.0f)
-//		{
-//			i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
-//			yield return null;
-//		}
-//	}
 
 }

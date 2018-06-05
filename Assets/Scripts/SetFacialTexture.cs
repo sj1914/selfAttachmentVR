@@ -23,17 +23,6 @@ public class SetFacialTexture : MonoBehaviour {
 		}
 	}
 
-//	public void UploadFile () {
-//		//can upload a file from within unity resources during development
-//		Renderer bustRenderer = bust.GetComponent<Renderer> ();
-//		//Load a preexisting texture for now
-//		Texture faceTexture = Resources.Load("User_Image/texture", typeof(Texture)) as Texture;
-//		if (faceTexture == null)
-//			UnityEngine.Debug.Log ("true");
-//		bustRenderer.materials [1].mainTexture = faceTexture;
-//
-//	}
-//
 	IEnumerator LoadImageAsTexture(){
 		//can upload file external from built app
 		//works but crashes with access violation
