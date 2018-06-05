@@ -20,7 +20,6 @@ from pathlib import Path
 detect = load_dlib_frontal_face_detector()
 aam_fitter = load_balanced_frontal_face_fitter()
 
-
 shape_model, landmarks = mio.import_pickle("Child Customisation/pkls/children_under7.pkl")
 texture_model = mio.import_pickle('Child Customisation/pkls/fast_dsift.pkl')
 tcoords, bcoords_img, tri_index_img = mio.import_pickle('Child Customisation/pkls/unwrapped_template_barycentrics.pkl')

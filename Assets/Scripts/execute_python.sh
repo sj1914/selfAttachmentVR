@@ -7,4 +7,4 @@ echo 'Python Script Run...' >> logfile.log
 source deactivate >> logfile.log
 echo 'Environment Deactivated.' >> logfile.log
 echo 'Preparing for application launch...' >> logfile.log
-open Child\ Customisation/Customiser.app
+# open Child\ Customisation/Customiser.app
