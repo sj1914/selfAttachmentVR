@@ -33,7 +33,6 @@ public class Customisation : MonoBehaviour {
 
 	public GameObject[] genderObjects;
 	public GameObject[] hairObjects;
-//	public GameObject[] skinObjects;
 	public GameObject[] eyeObjects;
 	public GameObject[] endObjects;
 
@@ -41,10 +40,9 @@ public class Customisation : MonoBehaviour {
 
 	public GameObject avatar;
 
-	//avatar attibutes
+	//avatar attributes
 	string genderChosen;
 	string hairColourChosen;
-//	Color skinToneChosen;
 	string eyeColourChosen;
 
 	int cullingMask;
@@ -58,24 +56,19 @@ public class Customisation : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.X) || OVRInput.GetDown(OVRInput.Button.Three)) {
 			SetEyeColour ("brown");
-//			SetSkinColour ("skin1");
 			SetHairColour ("brunette");
 			SetGender ("male");
 			SetStage ();
 		} else if (Input.GetKeyDown(KeyCode.B) || OVRInput.GetDown(OVRInput.Button.Two)) {
 			Restart ();
 			SetEyeColour ("green");
-//			SetSkinColour ("skin3");
 			SetHairColour ("black");
 			SetStage ();
 		} else if (Input.GetKeyDown(KeyCode.A) || OVRInput.GetDown(OVRInput.Button.One)) {
-			
-//			SetSkinColour ("skin4");
 			SetHairColour ("ginger");
 			SetGender ("female");
 			SetStage ();
 		} else if (Input.GetKeyDown(KeyCode.Y) || OVRInput.GetDown(OVRInput.Button.Four)) {
-//			SetSkinColour ("skin2");
 			SetEyeColour ("blue");
 			SetHairColour ("blonde");
 			SetStage ();
@@ -123,7 +116,7 @@ public class Customisation : MonoBehaviour {
 				obj.SetActive (true);
 			}
 		} else if (stage == (int)Stages.Final) {
-			SetupAvatar ();
+			
 			foreach (GameObject obj in hairObjects) {
 				obj.SetActive (false);
 			}
@@ -136,6 +129,7 @@ public class Customisation : MonoBehaviour {
 			foreach (GameObject obj in endObjects) {
 				obj.SetActive (true);
 			}
+			SetupAvatar ();
 		}
 	}
 
@@ -158,10 +152,10 @@ public class Customisation : MonoBehaviour {
 
 	private void SetupAvatar() {
 		this.gameObject.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("HiddenChild");
+		ChangeEyeColour (eyeColourChosen);
 		ChangeGender (genderChosen);
 		ChangeHairColour (hairColourChosen);
-		ChangeSkinColour ();
-		ChangeEyeColour (eyeColourChosen);
+
 	}
 
 	public void SetHairColour(string colour) {
@@ -229,38 +223,6 @@ public class Customisation : MonoBehaviour {
 			UnityEngine.Debug.Log ("Default case");
 			break;
 		}
-	}
-		
-
-	private void ChangeSkinColour(){
-		Renderer armsRenderer = arms.GetComponent<Renderer> ();
-		Renderer bustRenderer = bust.GetComponent<Renderer> ();
-
-		//need to load this from the same place as the face.
-		Texture2D faceTexture = Resources.Load("User_Image/texture", typeof(Texture)) as Texture2D;
-		Color[] colours = new Color[3];
-		colours[0] = faceTexture.GetPixel (360, 410);
-		colours[1] = faceTexture.GetPixel (590, 410);
-		colours[2] = faceTexture.GetPixel (460, 550);
-		Color skinColour = averageColor (colours);
-		armsRenderer.material.color = skinColour;
-
-		//Change the colour of the head
-		bustRenderer.materials [0].color = skinColour;
-	}
-
-	private static Color averageColor(Color[] colors) {
-		float r = 0.0f;
-		float g = 0.0f;
-		float b = 0.0f;
-		int numOfColours = colors.Length;
-		foreach (Color c in colors){
-			r += c.r;
-			g += c.g;
-			b += c.b;
-		}
-		Color averageColour = new Color (r/numOfColours, g/numOfColours, b/numOfColours);
-		return averageColour;
 	}
 
 	private void Restart() {
